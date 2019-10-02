@@ -20,13 +20,10 @@ public class Project {
 
     private List<User> waitingList;
 
-    @OneToMany (cascade = CascadeType.REMOVE)
-    private List<User> participants;
-
     @OneToOne (mappedBy = "user")
     private User owner;
 
-    @OneToMany (cascade = CascadeType.REMOVE)
+    @OneToMany (mappedBy = "project",cascade = CascadeType.REMOVE)
     private List<Tache> tasks;
 
 
@@ -70,13 +67,6 @@ public class Project {
         this.waitingList = waitingList;
     }
 
-    public List<User> getParticipants() {
-        return participants;
-    }
-
-    public void setParticipants(List<User> participants) {
-        this.participants = participants;
-    }
 
     public User getOwner() {
         return owner;
