@@ -16,16 +16,19 @@ public class Project {
     private Long idProject;
     private String title;
     private String description;
-    private List<String> technologies;
+    private String technologies;
 
+    @OneToMany (mappedBy = "waitingProject")
     private List<User> waitingList;
 
-    @OneToOne (mappedBy = "user")
+    @OneToOne
     private User owner;
 
     @OneToMany (mappedBy = "project",cascade = CascadeType.REMOVE)
     private List<Tache> tasks;
 
+    @ManyToOne
+    private User participant;
 
     public Long getIdProject() {
         return idProject;
@@ -51,13 +54,6 @@ public class Project {
         this.description = description;
     }
 
-    public List<String> getTechnologies() {
-        return technologies;
-    }
-
-    public void setTechnologies(List<String> technologies) {
-        this.technologies = technologies;
-    }
 
     public List<User> getWaitingList() {
         return waitingList;
@@ -82,5 +78,22 @@ public class Project {
 
     public void setTasks(List<Tache> tasks) {
         this.tasks = tasks;
+    }
+
+
+    public User getParticipant() {
+        return participant;
+    }
+
+    public void setParticipant(User participant) {
+        this.participant = participant;
+    }
+
+    public String getTechnologies() {
+        return technologies;
+    }
+
+    public void setTechnologies(String technologies) {
+        this.technologies = technologies;
     }
 }

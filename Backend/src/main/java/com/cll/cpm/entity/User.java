@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,17 +15,20 @@ public class User {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_generator")
     @SequenceGenerator(name = "user_generator", sequenceName = "user_seq", initialValue = 1, allocationSize = 1)
     private Long idUser;
+
     private String name ;
     private String lastname;
     private String email;
     private String password;
-    private List<String> competences;
+    private String competences;
 
     @OneToOne (mappedBy = "owner")
     private Project ownProject;
 
-    @ManyToMany
-    private Project partProject;
+    @OneToMany (mappedBy = "participant",cascade = CascadeType.REMOVE)
+    private List<Project> projects;
+    @ManyToOne
+    private Project waitingProject;
 
 
     public Long getIdUser() {
@@ -67,13 +71,7 @@ public class User {
         this.password = password;
     }
 
-    public List<String> getCompetences() {
-        return competences;
-    }
 
-    public void setCompetences(List<String> competences) {
-        this.competences = competences;
-    }
 
     public Project getOwnProject() {
         return ownProject;
@@ -83,11 +81,28 @@ public class User {
         this.ownProject = ownProject;
     }
 
-    public Project getPartProject() {
-        return partProject;
+
+    public List<Project> getProjects() {
+        return projects;
     }
 
-    public void setPartProject(Project partProject) {
-        this.partProject = partProject;
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
+    }
+
+    public Project getWaitingProject() {
+        return waitingProject;
+    }
+
+    public void setWaitingProject(Project waitingProject) {
+        this.waitingProject = waitingProject;
+    }
+
+    public String getCompetences() {
+        return competences;
+    }
+
+    public void setCompetences(String competences) {
+        this.competences = competences;
     }
 }
