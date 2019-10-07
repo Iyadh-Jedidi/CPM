@@ -1,4 +1,4 @@
-package com.cll.cpm.entity;
+package com.cll.cpm.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -21,14 +21,14 @@ public class Project {
     @OneToMany (mappedBy = "waitingProject")
     private List<User> waitingList;
 
-    @OneToOne
+    @ManyToOne
     private User owner;
 
     @OneToMany (mappedBy = "project",cascade = CascadeType.REMOVE)
-    private List<Tache> tasks;
+    private List<Task> tasks;
 
-    @ManyToOne
-    private User participant;
+    @ManyToMany
+    private List<User> participants;
 
     public Long getIdProject() {
         return idProject;
@@ -72,22 +72,16 @@ public class Project {
         this.owner = owner;
     }
 
-    public List<Tache> getTasks() {
+    public List<Task> getTasks() {
         return tasks;
     }
 
-    public void setTasks(List<Tache> tasks) {
+    public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
     }
 
 
-    public User getParticipant() {
-        return participant;
-    }
 
-    public void setParticipant(User participant) {
-        this.participant = participant;
-    }
 
     public String getTechnologies() {
         return technologies;
@@ -95,5 +89,13 @@ public class Project {
 
     public void setTechnologies(String technologies) {
         this.technologies = technologies;
+    }
+
+    public List<User> getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(List<User> participants) {
+        this.participants = participants;
     }
 }

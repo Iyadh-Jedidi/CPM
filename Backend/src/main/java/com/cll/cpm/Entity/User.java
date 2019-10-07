@@ -1,10 +1,9 @@
-package com.cll.cpm.entity;
+package com.cll.cpm.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,20 +14,19 @@ public class User {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_generator")
     @SequenceGenerator(name = "user_generator", sequenceName = "user_seq", initialValue = 1, allocationSize = 1)
     private Long idUser;
-
     private String name ;
     private String lastname;
     private String email;
     private String password;
     private String competences;
 
-    @OneToOne (mappedBy = "owner")
-    private Project ownProject;
+    @OneToMany (mappedBy = "owner")
+    private List<Project> ownProjects;
 
-    @OneToMany (mappedBy = "participant",cascade = CascadeType.REMOVE)
+    @ManyToMany (mappedBy = "participants",cascade = CascadeType.REMOVE)
     private List<Project> projects;
-    @ManyToOne
-    private Project waitingProject;
+    @ManyToMany
+    private List <Project> waitingProject;
 
 
     public Long getIdUser() {
@@ -73,13 +71,6 @@ public class User {
 
 
 
-    public Project getOwnProject() {
-        return ownProject;
-    }
-
-    public void setOwnProject(Project ownProject) {
-        this.ownProject = ownProject;
-    }
 
 
     public List<Project> getProjects() {
@@ -90,12 +81,23 @@ public class User {
         this.projects = projects;
     }
 
-    public Project getWaitingProject() {
+
+
+
+    public List<Project> getWaitingProject() {
         return waitingProject;
     }
 
-    public void setWaitingProject(Project waitingProject) {
+    public void setWaitingProject(List<Project> waitingProject) {
         this.waitingProject = waitingProject;
+    }
+
+    public List<Project> getOwnProjects() {
+        return ownProjects;
+    }
+
+    public void setOwnProjects(List<Project> ownProjects) {
+        this.ownProjects = ownProjects;
     }
 
     public String getCompetences() {
