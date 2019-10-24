@@ -1,13 +1,13 @@
-import { ModalProjectComponent } from './modal-project/modal-project.component';
+import { ModalMyProjectComponent } from './modal-my-project/modal-my-project.component';
 import { Component, OnInit } from '@angular/core';
 import { NbWindowService } from '@nebular/theme';
 
 @Component({
-  selector: 'ngx-project',
-  templateUrl: './project.component.html',
-  styleUrls: ['./project.component.scss']
+  selector: 'ngx-my-project',
+  templateUrl: './my-project.component.html',
+  styleUrls: ['./my-project.component.scss']
 })
-export class ProjectComponent implements OnInit {
+export class MyProjectComponent implements OnInit {
 
   constructor(private windowService: NbWindowService) { }
 
@@ -18,7 +18,7 @@ export class ProjectComponent implements OnInit {
     localStorage.removeItem('idRC');
     localStorage.setItem('e', '0');
 
-    this.windowService.open(ModalProjectComponent,
+    this.windowService.open(ModalMyProjectComponent,
       {title: 'Ajouter Project'});
   }
   settings = {
@@ -68,7 +68,7 @@ export class ProjectComponent implements OnInit {
       localStorage.removeItem('e');
       localStorage.removeItem('idRC');
       localStorage.setItem('idRC', event.data.idContrat);
-      this.windowService.open(ModalProjectComponent,
+      this.windowService.open(ModalMyProjectComponent,
         {title: 'Afficher Magasin',context: {id:event.data.idMagasin}});
     }
    
@@ -84,5 +84,6 @@ export class ProjectComponent implements OnInit {
   //     event.confirm.reject();
   //   }
   // }
+
 
 }

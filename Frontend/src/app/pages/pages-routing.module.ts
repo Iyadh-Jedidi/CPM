@@ -1,3 +1,5 @@
+import { ProfileComponent } from './profile/profile.component';
+import { MyProjectComponent } from './my-project/my-project.component';
 import { ProjectComponent } from './project/project.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -17,6 +19,14 @@ const routes: Routes = [{
     {
       path: 'project',
       component: ProjectComponent,
+    },
+    {
+      path: 'myProject',
+      component: MyProjectComponent,
+    },
+    {
+      path: 'profile',
+      component: ProfileComponent,
     }
     
   ],

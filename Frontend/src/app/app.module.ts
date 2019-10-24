@@ -1,3 +1,4 @@
+import { ProjectModule } from './pages/project/project.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 /**
  * @license
@@ -23,7 +24,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
     CoreModule.forRoot(),
