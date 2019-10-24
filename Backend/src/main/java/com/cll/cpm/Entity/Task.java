@@ -1,13 +1,17 @@
 package com.cll.cpm.Entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tache_generator")
@@ -19,35 +23,4 @@ public class Task {
     @ManyToOne
     private Project project ;
 
-    public Long getIdTache() {
-        return idTache;
-    }
-
-    public void setIdTache(Long idTache) {
-        this.idTache = idTache;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Project getProject() {
-        return project;
-    }
-
-    public void setProject(Project project) {
-        this.project = project;
-    }
 }
