@@ -38,7 +38,9 @@ public class UserController {
     @PostMapping("/users")
     public Object addUser (@Valid @RequestBody UserDto userDto){
         User user = modelMapper.map(userDto,User.class);
+        System.out.println(user);
         user = userService.saveUser(user);
+        userDto = modelMapper.map(user,UserDto.class);
         return ResponseEntity.status(HttpStatus.OK).body(userDto);
     }
     @PutMapping("/users/{id}")

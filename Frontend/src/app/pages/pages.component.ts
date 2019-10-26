@@ -13,7 +13,7 @@ import { MENU_ITEMS } from './pages-menu';
   `,
 })
 export class PagesComponent {
-  public static urlConfig='http://localhost:9090';
+  public static urlConfig='http://localhost:8080';
 
   menu = MENU_ITEMS;
 }
